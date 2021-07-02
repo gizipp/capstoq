@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+tickers = [
+  'AAPL', 'FB', 'GOOG','NET', 'DOCN',
+  'SPOT', 'NFLX', 'ZM', 'SHOP', 'PLTR',
+  'MTCH', 'WORK', 'PYPL', 'RBLX'
+]
+
+tickers.each do |ticker|
+  Stock.create(ticker: ticker, status: :active)
+end
