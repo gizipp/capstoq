@@ -1,4 +1,5 @@
 import React from 'react'
+import "./styles.css";
 
 export class StocksInfo extends React.Component {
 
@@ -24,8 +25,12 @@ export class StocksInfo extends React.Component {
     return (
       <div>
       {this.state.stocks.map(obj =>
-        <p key={obj.id}>{obj.ticker}</p>
-
+        <div className="box">
+          <img src={obj.logo_url} className="photo" />
+          <p key={obj.id}>
+            {obj.ticker} - {obj.short_name}
+          </p>
+        </div>
       )}
      </div>
   )

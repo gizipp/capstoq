@@ -1,6 +1,6 @@
 module Stocks
   class Styvio
-    def get(ticker)
+    def data(ticker)
       send_request!(
         URI("https://www.styvio.com/api/#{ticker}")
       )

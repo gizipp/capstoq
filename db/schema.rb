@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 2021_07_02_225150) do
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
     t.integer "status", default: 0
+    t.json "data", default: {}
+    t.json "sentiment", default: {}
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

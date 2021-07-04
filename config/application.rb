@@ -33,7 +33,7 @@ module Capstoq
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.autoloader = :classic
-    config.autoload_paths << Rails.root.join("lib/stocks")
+    config.eager_load_paths << Rails.root.join("lib/stocks")
 
     # Don't generate system test files.
     config.generators.system_tests = nil
