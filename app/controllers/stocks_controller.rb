@@ -19,6 +19,12 @@ class StocksController < ApplicationController
   def edit
   end
 
+  def fetch
+    FetchStocksWorker.perform_async
+
+    redirect_to stocks_path, notice: "Fetch stocks from 3rd party successfully started."
+  end
+
   # POST /stocks or /stocks.json
   def create
     @stock = Stock.new(stock_params)
