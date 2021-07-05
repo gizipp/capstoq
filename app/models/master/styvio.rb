@@ -1,7 +1,6 @@
 module Master
   class Styvio
     DATA_ATTRIBUTES = [
-      "ticker",
       "shortName",
       "logoURL",
       "invScore",

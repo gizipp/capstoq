@@ -3,13 +3,13 @@ require "#{Rails.root}/lib/stocks/styvio"
 class Stock < ApplicationRecord
   enum status: { inactive: 0, active: 1, archived: 2 }
 
-  before_save :set_ticker_uppercase
-
   validates :ticker, presence: true,
                      uniqueness: true,
                      format: {
                        with: /\A[a-zA-Z]+\Z/
                      }
+
+  before_save { ticker.upcase! }
 
   Master::Styvio::DATA_ATTRIBUTES.each do |method|
     define_method method.underscore do
@@ -18,10 +18,6 @@ class Stock < ApplicationRecord
   end
 
   alias_method :investing_score, :inv_score
-
-  def set_ticker_uppercase
-    self.ticker = ticker.upcase
-  end
 
   def fetch_data
     self.data = Stocks::Styvio.new.data(ticker)
