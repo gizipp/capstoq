@@ -6,5 +6,15 @@ Rails.application.routes.draw do
       get :fetch
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :stocks, only: [:index] do
+          collection do
+            get 'data/:ticker',      to: "stocks#data"
+            get 'sentiment/:ticker', to: "stocks#sentiment"
+          end
+        end
+      end
+  end
 end

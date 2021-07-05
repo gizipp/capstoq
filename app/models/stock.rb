@@ -19,6 +19,14 @@ class Stock < ApplicationRecord
 
   alias_method :investing_score, :inv_score
 
+  def data_url
+    "/api/v1/data/#{ticker}"
+  end
+
+  def sentiment_url
+    "/api/v1/sentiment/#{ticker}"
+  end
+
   def fetch_data
     self.data = Stocks::Styvio.new.data(ticker)
     self.save
