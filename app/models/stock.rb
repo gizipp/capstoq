@@ -9,7 +9,7 @@ class Stock < ApplicationRecord
                        with: /\A[a-zA-Z]+\Z/
                      }
 
-  before_save { ticker.upcase! }
+  before_save :set_ticker_upcase, if: :ticker
 
   Master::Styvio::DATA_ATTRIBUTES.each do |method|
     define_method method.underscore do
@@ -18,6 +18,10 @@ class Stock < ApplicationRecord
   end
 
   alias_method :investing_score, :inv_score
+
+  def set_ticker_upcase
+    self.ticker = ticker.upcase!
+  end
 
   def data_url
     "/api/v1/data/#{ticker}"
