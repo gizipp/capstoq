@@ -31,6 +31,18 @@ class Stock < ApplicationRecord
     "/api/v1/sentiment/#{ticker}"
   end
 
+  def growth_percent
+    calculate_growth(
+      all_time_prices.first,
+      all_time_prices.last
+    )
+  end
+
+  def calculate_growth(first_amount, last_amount)
+    growth_amount = last_amount - first_amount
+    growth_amount / first_amount * 100
+  end
+
   def fetch_data
     self.data = Stocks::Styvio.new.data(ticker)
     self.save

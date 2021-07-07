@@ -51,6 +51,7 @@ group :production do
   gem 'pg'
 end
 
+gem 'devise'
 gem 'sidekiq'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
