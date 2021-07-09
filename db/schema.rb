@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_023455) do
+ActiveRecord::Schema.define(version: 2021_07_09_151750) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "stock_favorites", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stock_id", "user_id"], name: "index_stock_favorites_on_stock_id_and_user_id"
+    t.index ["stock_id"], name: "index_stock_favorites_on_stock_id"
+    t.index ["user_id"], name: "index_stock_favorites_on_user_id"
+  end
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
@@ -42,4 +55,6 @@ ActiveRecord::Schema.define(version: 2021_07_07_023455) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "stock_favorites", "stocks"
+  add_foreign_key "stock_favorites", "users"
 end
