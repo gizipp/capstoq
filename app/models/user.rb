@@ -4,13 +4,12 @@ class User < ApplicationRecord
 
   enum role: {
    user: 0,
-   admin: 1,
-   other: 99
+   admin: 1
   }
 
   validates_presence_of :name
   validates_length_of   :name,     minimum: 4
-  validates_format_of   :email,    with: URI::MailTo::EMAIL_REGEXP
+  validates_format_of   :email,    with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates_length_of   :password, minimum: 8, on: :create
   validates_length_of   :password, minimum: 8, on: :update, allow_blank: true
 
