@@ -20,7 +20,7 @@ class Stock < ApplicationRecord
   alias_method :investing_score, :inv_score
 
   def set_ticker_upcase
-    self.ticker = ticker.upcase!
+    self.ticker = ticker.upcase
   end
 
   def data_url
