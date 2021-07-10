@@ -18,8 +18,7 @@ ActiveRecord::Schema.define(version: 2021_07_09_151750) do
   create_table "stock_favorites", force: :cascade do |t|
     t.bigint "stock_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
     t.index ["stock_id", "user_id"], name: "index_stock_favorites_on_stock_id_and_user_id"
     t.index ["stock_id"], name: "index_stock_favorites_on_stock_id"
     t.index ["user_id"], name: "index_stock_favorites_on_user_id"
@@ -49,10 +48,12 @@ ActiveRecord::Schema.define(version: 2021_07_09_151750) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "name"
+    t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role"], name: "index_users_on_role"
   end
 
   add_foreign_key "stock_favorites", "stocks"
