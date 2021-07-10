@@ -51,6 +51,7 @@ group :production do
   gem 'pg'
 end
 
+gem 'administrate'
 gem 'devise'
 gem 'jwt'
 gem 'sidekiq'
