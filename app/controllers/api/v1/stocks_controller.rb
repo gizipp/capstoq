@@ -2,7 +2,18 @@ class Api::V1::StocksController < ApplicationAPIController
   before_action :authenticate_user!, only: [ :favorite, :favorites ]
 
   def index
-    render json: Stock.all.select(:id, :ticker)
+    stocks = []
+
+    Stock.all.each do |stock|
+      stocks << {
+        id: stock.id,
+        ticker: stock.ticker,
+        logo_url: stock.logo_url,
+        short_name: stock.short_name
+      }
+    end
+
+    render json: stocks
   end
 
   def data

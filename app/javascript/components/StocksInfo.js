@@ -10,7 +10,7 @@ export class StocksInfo extends React.Component {
    }
 
   componentDidMount(){
-    fetch("/stocks.json")
+    fetch("/api/v1/stocks.json")
     .then(resp => resp.json())
     .then(a => {
       this.setState({
@@ -24,9 +24,9 @@ export class StocksInfo extends React.Component {
     return (
       <div>
       {this.state.stocks.map(obj =>
-        <div className="box">
+        <div key={obj.id} className="box">
           <img src={obj.logo_url} className="photo" />
-          <p key={obj.id}>
+          <p>
             {obj.ticker} - {obj.short_name}
           </p>
         </div>
