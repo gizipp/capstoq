@@ -5,6 +5,10 @@ class UserDashboard < Administrate::BaseDashboard
     id:                     Field::Number,
     name:                   Field::String,
     email:                  Field::String,
+    password:               Field::Password,
+    role:                   Field::Select.with_options(
+      collection: User.roles.keys
+    ),
     encrypted_password:     Field::String,
     reset_password_token:   Field::String,
     reset_password_sent_at: Field::DateTime,
@@ -33,6 +37,7 @@ class UserDashboard < Administrate::BaseDashboard
     id
     name
     email
+    role
     favorites
     encrypted_password
     reset_password_token
@@ -51,20 +56,10 @@ class UserDashboard < Administrate::BaseDashboard
   ].freeze
 
   FORM_ATTRIBUTES = %i[
-    email
-    encrypted_password
-    reset_password_token
-    reset_password_sent_at
-    remember_created_at
-    sign_in_count
-    current_sign_in_at
-    last_sign_in_at
-    current_sign_in_ip
-    last_sign_in_ip
-    confirmation_token
-    confirmed_at
-    confirmation_sent_at
     name
+    email
+    password
+    role
   ].freeze
 
   COLLECTION_FILTERS = {}.freeze
